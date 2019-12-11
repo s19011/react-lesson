@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset="utf-8"></meta>
+<title>hello-react</title>
+
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+<div id="root"></div>
+<script type="text/babel">
+  //ReactでDOMを書き換える
+ReactDOM.render(
+  getDOM(),
+  document.getElementById('root')
+);
+  //要素を返す関数
+  function getDOM() {
+    return (
+      <div>
+        <p>探すのに時があり</p>
+        <p>捨てるのにときがある</p>
+      </div>
+    ) 
+  }
+</script>
