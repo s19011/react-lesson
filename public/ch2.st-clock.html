@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<meta charset="utf-8"></meta>
+<title>hello-react</title>
+
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+<div id="root"></div>
+<script type="text/babel">
+  //状態を持った時計コンポーネントの定義
+  class SClock extends React.Component {
+    constructor (props)  {
+      super(props) 
+      //状態の初期化
+      this.state = {
+        now: (new Date()) 
+      }
+      //毎秒状態を更新する
+      setInterval(e => {
+        this.setState({ now: (new Date()) }) 
+      }, 1000)
+    }
+    //描画内容を返す
+    render () {
+      const now = this.state.now
+      const hh = this.fmt(now.getHours())
+      const mm = this.fmt(now.getMinutes())
+      const ss = this.fmt(now.getSeconds())
+      return (<div>{hh}:{mm}:{ss}</div>)
+    }
+    fmt (v) {
+      const s = "00" + v
+      return s.substr(s.length - 2, 2)
+    }
+  }
+  //コンポーネントを配置
+  ReactDOM.render(<div><SClock /></div>,
+    document.getElementById('root'))
+
+</script>
