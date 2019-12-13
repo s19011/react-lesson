@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<meta charset="utf-8"></meta>
+<title>hello-react</title>
+
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+<div id="root"></div>
+<script type="text/babel">
+  //状態を持ったコンポーネントの定義
+  class CBox extends React.Component {
+    //コンストラクタ
+    constructor (props) {
+      super(props) 
+      //状態の初期化
+      this.state ={checked: false}
+    }
+    render (){
+      //未チェックの状態
+      let mark = "□"
+      let bstyle = { fontWeight: 'normal' }
+      //チェックされてるか
+      if (this.state.checked) {
+        mark = '■' 
+        bstyle = {fontWeight: 'bold'}
+      }
+      //クリックしたときのイベントを指定
+      const clickHandler = (e) => {
+        const newValue = !this.state.checked 
+        this.setState({checked: newValue})
+      }
+      //描画内容を返す
+      return (
+        <div onClick={clickHandler} style={bstyle}>
+          {mark} {this.props.label}
+        </div> 
+      )
+    }
+  }
+  //ReactでDOMを書き換える
+  const dom = <div>
+    <CBox label="Apple" />
+    <CBox label="Banana" />
+    <CBox label="Orange" />
+    <CBox label="Mango" />
+  </div>
+  ReactDOM.render(dom,
+    document.getElementById('root'))
+</script>
